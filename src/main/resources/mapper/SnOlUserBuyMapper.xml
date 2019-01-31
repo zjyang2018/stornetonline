@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnOlUserBuyMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnOlUserBuy" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="purchase_count" property="purchaseCount" jdbcType="DECIMAL" />
+    <result column="pay_voucher" property="payVoucher" jdbcType="VARCHAR" />
+    <result column="is_examine" property="isExamine" jdbcType="CHAR" />
+    <result column="examin_desc" property="examinDesc" jdbcType="VARCHAR" />
+    <result column="examin_time" property="examinTime" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, purchase_count, pay_voucher, is_examine, examin_desc, examin_time, create_by, 
+    create_time, update_by, update_time, remarks, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_ol_user_buy
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sn_ol_user_buy
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_ol_user_buy
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserBuy" >
+    insert into sn_ol_user_buy (id, user_id, purchase_count, 
+      pay_voucher, is_examine, examin_desc, 
+      examin_time, create_by, create_time, 
+      update_by, update_time, remarks, 
+      del_flag)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{purchaseCount,jdbcType=DECIMAL}, 
+      #{payVoucher,jdbcType=VARCHAR}, #{isExamine,jdbcType=CHAR}, #{examinDesc,jdbcType=VARCHAR}, 
+      #{examinTime,jdbcType=BIGINT}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserBuy" >
+    insert into sn_ol_user_buy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="purchaseCount != null" >
+        purchase_count,
+      </if>
+      <if test="payVoucher != null" >
+        pay_voucher,
+      </if>
+      <if test="isExamine != null" >
+        is_examine,
+      </if>
+      <if test="examinDesc != null" >
+        examin_desc,
+      </if>
+      <if test="examinTime != null" >
+        examin_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseCount != null" >
+        #{purchaseCount,jdbcType=DECIMAL},
+      </if>
+      <if test="payVoucher != null" >
+        #{payVoucher,jdbcType=VARCHAR},
+      </if>
+      <if test="isExamine != null" >
+        #{isExamine,jdbcType=CHAR},
+      </if>
+      <if test="examinDesc != null" >
+        #{examinDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="examinTime != null" >
+        #{examinTime,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserBuy" >
+    update sn_ol_user_buy
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseCount != null" >
+        purchase_count = #{purchaseCount,jdbcType=DECIMAL},
+      </if>
+      <if test="payVoucher != null" >
+        pay_voucher = #{payVoucher,jdbcType=VARCHAR},
+      </if>
+      <if test="isExamine != null" >
+        is_examine = #{isExamine,jdbcType=CHAR},
+      </if>
+      <if test="examinDesc != null" >
+        examin_desc = #{examinDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="examinTime != null" >
+        examin_time = #{examinTime,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserBuy" >
+    update sn_ol_user_buy
+    set user_id = #{userId,jdbcType=VARCHAR},
+      purchase_count = #{purchaseCount,jdbcType=DECIMAL},
+      pay_voucher = #{payVoucher,jdbcType=VARCHAR},
+      is_examine = #{isExamine,jdbcType=CHAR},
+      examin_desc = #{examinDesc,jdbcType=VARCHAR},
+      examin_time = #{examinTime,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

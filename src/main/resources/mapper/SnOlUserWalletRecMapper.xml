@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnOlUserWalletRecMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnOlUserWalletRec" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="cur_type" property="curType" jdbcType="VARCHAR" />
+    <result column="from_address" property="fromAddress" jdbcType="VARCHAR" />
+    <result column="to_address" property="toAddress" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="tr_type" property="trType" jdbcType="VARCHAR" />
+    <result column="is_examine" property="isExamine" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, cur_type, from_address, to_address, amount, tr_type, is_examine, create_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_ol_user_wallet_rec
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryList" resultMap="BaseResultMap">
+    select * from sn_ol_user_wallet_rec
+    where userid = #{userId} and tr_type = #{trType}
+    order by  create_time
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="queryTotal" resultType="int">
+    select count(*) from sn_ol_user_wallet_rec
+    where userid=#{userId} and tr_type = #{trType}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_ol_user_wallet_rec
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWalletRec" >
+    insert into sn_ol_user_wallet_rec (id, userid, cur_type, 
+      from_address, to_address, amount, 
+      tr_type, is_examine, create_time, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{curType,jdbcType=VARCHAR}, 
+      #{fromAddress,jdbcType=VARCHAR}, #{toAddress,jdbcType=VARCHAR}, #{amount,jdbcType=BIGINT}, 
+      #{trType,jdbcType=VARCHAR}, #{isExamine,jdbcType=CHAR}, #{createTime,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWalletRec" >
+    insert into sn_ol_user_wallet_rec
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="curType != null" >
+        cur_type,
+      </if>
+      <if test="fromAddress != null" >
+        from_address,
+      </if>
+      <if test="toAddress != null" >
+        to_address,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="trType != null" >
+        tr_type,
+      </if>
+      <if test="isExamine != null" >
+        is_examine,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="curType != null" >
+        #{curType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAddress != null" >
+        #{fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null" >
+        #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="trType != null" >
+        #{trType,jdbcType=VARCHAR},
+      </if>
+      <if test="isExamine != null" >
+        #{isExamine,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWalletRec" >
+    update sn_ol_user_wallet_rec
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="curType != null" >
+        cur_type = #{curType,jdbcType=VARCHAR},
+      </if>
+      <if test="fromAddress != null" >
+        from_address = #{fromAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toAddress != null" >
+        to_address = #{toAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="trType != null" >
+        tr_type = #{trType,jdbcType=VARCHAR},
+      </if>
+      <if test="isExamine != null" >
+        is_examine = #{isExamine,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWalletRec" >
+    update sn_ol_user_wallet_rec
+    set userid = #{userid,jdbcType=VARCHAR},
+      cur_type = #{curType,jdbcType=VARCHAR},
+      from_address = #{fromAddress,jdbcType=VARCHAR},
+      to_address = #{toAddress,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      tr_type = #{trType,jdbcType=VARCHAR},
+      is_examine = #{isExamine,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

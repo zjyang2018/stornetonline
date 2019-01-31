@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnOlUserFileupMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnOlUserFileup" >
+    <id column="fileid" property="fileid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="local_path" property="localPath" jdbcType="VARCHAR" />
+    <result column="sia_path" property="siaPath" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="upload_time" property="uploadTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fileid, userid, local_path, sia_path, name, size, status, upload_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_ol_user_fileup
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryAllList" resultMap="BaseResultMap">
+    select * from sn_ol_user_fileup
+    where userid = #{userId} and status != '0'
+    <if test="param != null" >
+      and name like  #{param,jdbcType=VARCHAR}
+    </if>
+    <if test="orderByClause != null" >
+      order by  #{orderByClause,jdbcType=VARCHAR}
+    </if>
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="queryAllTotal" resultType="int">
+    select count(*) from sn_ol_user_fileup
+    where userid=#{userId} and status != '0'
+    <if test="param != null" >
+      and name like  #{param,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="queryList" resultMap="BaseResultMap">
+    select * from sn_ol_user_fileup
+    where userid = #{userId} and status = #{status,jdbcType=VARCHAR}
+    <if test="param != null" >
+      and name like  #{param,jdbcType=VARCHAR}
+    </if>
+    <if test="orderByClause != null" >
+      order by  #{orderByClause,jdbcType=VARCHAR}
+    </if>
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="queryTotal" resultType="int">
+    select count(*) from sn_ol_user_fileup
+    where userid=#{userId} and status = #{status,jdbcType=VARCHAR}
+    <if test="param != null" >
+      and name like  #{param,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectBatchByUserIdAndFileId" resultMap="BaseResultMap" >
+    select * from sn_ol_user_fileup
+    where userid = #{userId,jdbcType=VARCHAR} and fileid in
+    <foreach collection="fileIds" item="item" index="index" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+  </select>
+
+  <select id="selectByUserIdAndFileId" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sn_ol_user_fileup
+    where userid = #{userid,jdbcType=VARCHAR} and fileid = #{fileid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sn_ol_user_fileup
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getAllFileInfoByName" resultMap="BaseResultMap">
+    select * from sn_ol_user_fileup
+    where userid = #{userid,jdbcType=VARCHAR} and status != '0'
+    and name like  #{param,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getFileInfoByName" resultMap="BaseResultMap">
+    select * from sn_ol_user_fileup
+    where userid = #{userid,jdbcType=VARCHAR} and status = #{status,jdbcType=VARCHAR}
+    and name like  #{param,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getFileInfoByStatus" resultMap="BaseResultMap">
+    select * from sn_ol_user_fileup
+    where userid = #{userid,jdbcType=VARCHAR} and fileid = #{fileid,jdbcType=VARCHAR}
+    and status = #{status,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_ol_user_fileup
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFileup" >
+    insert into sn_ol_user_fileup (fileid, userid, local_path, 
+      sia_path, name, size, 
+      status, upload_time, update_time
+      )
+    values (#{fileid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{localPath,jdbcType=VARCHAR}, 
+      #{siaPath,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{size,jdbcType=BIGINT}, 
+      #{status,jdbcType=BIT}, #{uploadTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFileup" >
+    insert into sn_ol_user_fileup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        fileid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="localPath != null" >
+        local_path,
+      </if>
+      <if test="siaPath != null" >
+        sia_path,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="localPath != null" >
+        #{localPath,jdbcType=VARCHAR},
+      </if>
+      <if test="siaPath != null" >
+        #{siaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFileup" >
+    update sn_ol_user_fileup
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="localPath != null" >
+        local_path = #{localPath,jdbcType=VARCHAR},
+      </if>
+      <if test="siaPath != null" >
+        sia_path = #{siaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFileup" >
+    update sn_ol_user_fileup
+    set userid = #{userid,jdbcType=VARCHAR},
+      local_path = #{localPath,jdbcType=VARCHAR},
+      sia_path = #{siaPath,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      size = #{size,jdbcType=BIGINT},
+      status = #{status,jdbcType=BIT},
+      upload_time = #{uploadTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </update>
+</mapper>

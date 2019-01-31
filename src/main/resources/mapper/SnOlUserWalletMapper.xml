@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnOlUserWalletMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnOlUserWallet" >
+    <id column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="cur_type" property="curType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, amount, address, cur_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_ol_user_wallet
+    where userid = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_ol_user_wallet
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWallet" >
+    insert into sn_ol_user_wallet (userid, amount, address, 
+      cur_type)
+    values (#{userid,jdbcType=VARCHAR}, #{amount,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, 
+      #{curType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWallet" >
+    insert into sn_ol_user_wallet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="curType != null" >
+        cur_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="curType != null" >
+        #{curType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWallet" >
+    update sn_ol_user_wallet
+    <set >
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="curType != null" >
+        cur_type = #{curType,jdbcType=CHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserWallet" >
+    update sn_ol_user_wallet
+    set amount = #{amount,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      cur_type = #{curType,jdbcType=CHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>

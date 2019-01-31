@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnOlUserFiledwMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnOlUserFiledw" >
+    <id column="fileid" property="fileid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="BIGINT" />
+    <result column="download_time" property="downloadTime" jdbcType="TIMESTAMP" />
+    <result column="download_conut" property="downloadConut" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fileid, userid, path, name, size, download_time, download_conut
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_ol_user_filedw
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_ol_user_filedw
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFiledw" >
+    insert into sn_ol_user_filedw (fileid, userid, path, 
+      name, size, download_time, 
+      download_conut)
+    values (#{fileid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{size,jdbcType=BIGINT}, #{downloadTime,jdbcType=TIMESTAMP}, 
+      #{downloadConut,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFiledw" >
+    insert into sn_ol_user_filedw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        fileid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="downloadTime != null" >
+        download_time,
+      </if>
+      <if test="downloadConut != null" >
+        download_conut,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="downloadTime != null" >
+        #{downloadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadConut != null" >
+        #{downloadConut,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFiledw" >
+    update sn_ol_user_filedw
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="downloadTime != null" >
+        download_time = #{downloadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downloadConut != null" >
+        download_conut = #{downloadConut,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserFiledw" >
+    update sn_ol_user_filedw
+    set userid = #{userid,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      size = #{size,jdbcType=BIGINT},
+      download_time = #{downloadTime,jdbcType=TIMESTAMP},
+      download_conut = #{downloadConut,jdbcType=INTEGER}
+    where fileid = #{fileid,jdbcType=VARCHAR}
+  </update>
+</mapper>

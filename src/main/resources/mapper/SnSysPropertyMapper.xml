@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnSysPropertyMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnSysProperty" >
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="prop_value" property="propValue" jdbcType="VARCHAR" />
+    <result column="disc" property="disc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    name, prop_value, disc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_sys_property
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_sys_property
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnSysProperty" >
+    insert into sn_sys_property (name, prop_value, disc
+      )
+    values (#{name,jdbcType=VARCHAR}, #{propValue,jdbcType=VARCHAR}, #{disc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnSysProperty" >
+    insert into sn_sys_property
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="propValue != null" >
+        prop_value,
+      </if>
+      <if test="disc != null" >
+        disc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="propValue != null" >
+        #{propValue,jdbcType=VARCHAR},
+      </if>
+      <if test="disc != null" >
+        #{disc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnSysProperty" >
+    update sn_sys_property
+    <set >
+      <if test="propValue != null" >
+        prop_value = #{propValue,jdbcType=VARCHAR},
+      </if>
+      <if test="disc != null" >
+        disc = #{disc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnSysProperty" >
+    update sn_sys_property
+    set prop_value = #{propValue,jdbcType=VARCHAR},
+      disc = #{disc,jdbcType=VARCHAR}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

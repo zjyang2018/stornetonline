@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+        namespace="com.ch.stornetonline.modules.app.mapper.SnOlUserInfoMapper">
+    <resultMap id="BaseResultMap"
+               type="com.ch.stornetonline.modules.app.entity.SnOlUserInfo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName"
+                jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName"
+                jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="password" property="password"
+                jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="head_portrait" property="headPortrait"
+                jdbcType="VARCHAR"/>
+        <result column="country_code" property="countryCode"
+                jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday"
+                jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <result column="referrer" property="referrer"
+                jdbcType="VARCHAR"/>
+        <result column="create_by" property="createBy"
+                jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime"
+                jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy"
+                jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime"
+                jdbcType="BIGINT"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+        <result column="del_flag" property="delFlag" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		id, user_no, user_name, real_name, mobile, email, password, salt,
+		head_portrait,
+		country_code, birthday, addr, referrer, create_by, create_time, update_by,
+		update_time,
+		remarks, del_flag
+	</sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sn_ol_user_info
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sn_ol_user_info
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+    <insert id="insert"
+            parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserInfo">
+		insert into sn_ol_user_info (id, user_no, user_name,
+		real_name, mobile, email,
+		password, salt, head_portrait,
+		country_code, birthday, addr,
+		referrer, create_by, create_time,
+		update_by, update_time, remarks,
+		del_flag)
+		values (#{id,jdbcType=VARCHAR}, #{userNo,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{realName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+		#{headPortrait,jdbcType=VARCHAR},
+		#{countryCode,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR},
+		#{referrer,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
+		#{createTime,jdbcType=BIGINT},
+		#{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR},
+		#{delFlag,jdbcType=CHAR})
+	</insert>
+    <insert id="insertSelective"
+            parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserInfo">
+        insert into sn_ol_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userNo != null">
+                user_no,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+            <if test="headPortrait != null">
+                head_portrait,
+            </if>
+            <if test="countryCode != null">
+                country_code,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="addr != null">
+                addr,
+            </if>
+            <if test="referrer != null">
+                referrer,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userNo != null">
+                #{userNo,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="headPortrait != null">
+                #{headPortrait,jdbcType=VARCHAR},
+            </if>
+            <if test="countryCode != null">
+                #{countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="referrer != null">
+                #{referrer,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserInfo">
+        update sn_ol_user_info
+        <set>
+            <if test="userNo != null">
+                user_no = #{userNo,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="headPortrait != null">
+                head_portrait = #{headPortrait,jdbcType=VARCHAR},
+            </if>
+            <if test="countryCode != null">
+                country_code = #{countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="addr != null">
+                addr = #{addr,jdbcType=VARCHAR},
+            </if>
+            <if test="referrer != null">
+                referrer = #{referrer,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=BIGINT},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=BIGINT},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey"
+            parameterType="com.ch.stornetonline.modules.app.entity.SnOlUserInfo">
+		update sn_ol_user_info
+		set user_no = #{userNo,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		real_name = #{realName,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		head_portrait = #{headPortrait,jdbcType=VARCHAR},
+		country_code = #{countryCode,jdbcType=VARCHAR},
+		birthday = #{birthday,jdbcType=VARCHAR},
+		addr = #{addr,jdbcType=VARCHAR},
+		referrer = #{referrer,jdbcType=VARCHAR},
+		create_by = #{createBy,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=BIGINT},
+		update_by = #{updateBy,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=BIGINT},
+		remarks = #{remarks,jdbcType=VARCHAR},
+		del_flag = #{delFlag,jdbcType=CHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+    <select id="selectOneByMap" resultMap="BaseResultMap"
+            parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from sn_ol_user_info
+        <where>
+            <if test="userNo != null">
+                AND user_no = #{userNo,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null">
+                AND user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="realName != null">
+                AND real_name = #{realName,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null">
+                AND mobile = #{mobile,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                AND email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null">
+                AND password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="salt != null">
+                AND salt = #{salt,jdbcType=VARCHAR}
+            </if>
+            <if test="headPortrait != null">
+                AND head_portrait = #{headPortrait,jdbcType=VARCHAR}
+            </if>
+            <if test="countryCode != null">
+                AND country_code = #{countryCode,jdbcType=VARCHAR}
+            </if>
+            <if test="birthday != null">
+                AND birthday = #{birthday,jdbcType=VARCHAR}
+            </if>
+            <if test="addr != null">
+                AND addr = #{addr,jdbcType=VARCHAR}
+            </if>
+            <if test="referrer != null">
+                AND referrer = #{referrer,jdbcType=VARCHAR}
+            </if>
+            <if test="createBy != null">
+                AND create_by = #{createBy,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=BIGINT}
+            </if>
+            <if test="updateBy != null">
+                AND update_by = #{updateBy,jdbcType=VARCHAR}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=BIGINT}
+            </if>
+            <if test="remarks != null">
+                AND remarks = #{remarks,jdbcType=VARCHAR}
+            </if>
+            <if test="delFlag != null">
+                AND del_flag = #{delFlag,jdbcType=CHAR}
+            </if>
+        </where>
+    </select>
+    <select id="selectByMobile" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sn_ol_user_info
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </select>
+    <select id="selectMapByPrimaryKey" resultType="map" parameterType="java.lang.String">
+		select
+		id,
+        user_no userNo,
+        user_name userName,
+        real_name realName,
+        mobile,
+        email,
+        password,
+        salt,
+        head_portrait headPortrait,
+        country_code countryCode,
+        birthday,
+        addr,
+        referrer,
+        create_by createBy,
+        create_time createTime,
+        update_by updateBy,
+        update_time updateTime,
+        remarks,
+        del_flag delFlag
+		from sn_ol_user_info
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+    <select id="selectMapByMobile" resultType="map" parameterType="java.lang.String">
+		select
+		id,
+        user_no userNo,
+        user_name userName,
+        real_name realName,
+        mobile
+		from app_user_info
+		where mobile = #{mobile,jdbcType=VARCHAR}
+	</select>
+</mapper>

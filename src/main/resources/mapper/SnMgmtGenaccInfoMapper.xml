@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnMgmtGenaccInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnMgmtGenaccInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cur_type" property="curType" jdbcType="VARCHAR" />
+    <result column="snc_total_amount" property="sncTotalAmount" jdbcType="BIGINT" />
+    <result column="snc_headless_address" property="sncHeadlessAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cur_type, snc_total_amount, snc_headless_address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_mgmt_genacc_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByHeadlessAddress" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sn_mgmt_genacc_info
+    where snc_headless_address = #{sncHeadlessAddress,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sn_mgmt_genacc_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnMgmtGenaccInfo" >
+    insert into sn_mgmt_genacc_info (id, cur_type, snc_total_amount, 
+      snc_headless_address)
+    values (#{id,jdbcType=VARCHAR}, #{curType,jdbcType=VARCHAR}, #{sncTotalAmount,jdbcType=BIGINT}, 
+      #{sncHeadlessAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnMgmtGenaccInfo" >
+    insert into sn_mgmt_genacc_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="curType != null" >
+        cur_type,
+      </if>
+      <if test="sncTotalAmount != null" >
+        snc_total_amount,
+      </if>
+      <if test="sncHeadlessAddress != null" >
+        snc_headless_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="curType != null" >
+        #{curType,jdbcType=VARCHAR},
+      </if>
+      <if test="sncTotalAmount != null" >
+        #{sncTotalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="sncHeadlessAddress != null" >
+        #{sncHeadlessAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnMgmtGenaccInfo" >
+    update sn_mgmt_genacc_info
+    <set >
+      <if test="curType != null" >
+        cur_type = #{curType,jdbcType=VARCHAR},
+      </if>
+      <if test="sncTotalAmount != null" >
+        snc_total_amount = #{sncTotalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="sncHeadlessAddress != null" >
+        snc_headless_address = #{sncHeadlessAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnMgmtGenaccInfo" >
+    update sn_mgmt_genacc_info
+    set cur_type = #{curType,jdbcType=VARCHAR},
+      snc_total_amount = #{sncTotalAmount,jdbcType=BIGINT},
+      snc_headless_address = #{sncHeadlessAddress,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

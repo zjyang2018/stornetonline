@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ch.stornetonline.modules.app.mapper.SnSysBaseidMapper" >
+  <resultMap id="BaseResultMap" type="com.ch.stornetonline.modules.app.entity.SnSysBaseid" >
+    <id column="id_type" property="idType" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_type, id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sn_sys_baseid
+    where id_type = #{idType,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sn_sys_baseid
+    where id_type = #{idType,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ch.stornetonline.modules.app.entity.SnSysBaseid" >
+    insert into sn_sys_baseid (id_type, id)
+    values (#{idType,jdbcType=INTEGER}, #{id,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ch.stornetonline.modules.app.entity.SnSysBaseid" >
+    insert into sn_sys_baseid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idType != null" >
+        #{idType,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ch.stornetonline.modules.app.entity.SnSysBaseid" >
+    update sn_sys_baseid
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id_type = #{idType,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ch.stornetonline.modules.app.entity.SnSysBaseid" >
+    update sn_sys_baseid
+    set id = #{id,jdbcType=BIGINT}
+    where id_type = #{idType,jdbcType=INTEGER}
+  </update>
+</mapper>
